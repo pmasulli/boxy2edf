@@ -1,13 +1,19 @@
 #!/usr/bin/pyhon
-
 import struct
+import os.path
+import sys
 
-#boxy_file = "oddball_9sequences.txt"
-boxy_file = raw_input("Path to the boxy file: ")
-if boxy_file == "": exit();
+if len(sys.argv) < 2:
+    print "Interactive mode"
+    boxy_file = raw_input("Path to the boxy file: ")
+else:
+    boxy_file = sys.argv[1]
 
-# edf_file = "oddball_9sequences.edf"
-edf_file = boxy_file.replace(".txt","")+".edf"
+if not os.path.isfile(boxy_file):
+    raise ValueError("Boxy file not found: %s" % boxy_file)
+
+
+edf_file = boxy_file.replace(".txt", "")+".edf"
 
 # the boxy signals are decimals. I multiply for the multiply and then round to int
 multiplier = 1
@@ -16,10 +22,11 @@ digital_max = 100000
 
 
 EEG_EVENT_CHANNEL = 'EDF Annotations'
-eeg_event_length = 20 # each even data is coded as 20 2-byte "integers" i.e. 40 bytes available -- each TAL has this length
+
+# each event data is coded as 20 2-byte "integers" i.e. 40 bytes available -- each TAL has this length
+eeg_event_length = 20
 
 BOXY_EVENT_CHANNEL = 'digaux'
-
 
 
 def spacepad(string, n, paddingchar=" "):
@@ -29,6 +36,7 @@ def spacepad(string, n, paddingchar=" "):
     return string + paddingchar * (n - len(string))
 
 
+# open the two files
 bf = open(boxy_file, 'r')
 ef = open(edf_file, 'wb')
 
@@ -81,13 +89,12 @@ print "Update rate:", b_update_rate
 # columns to skip
 skipped_columns = {"time", "group", "step", "mark", "flag", "aux-1", "aux-2", "aux-3", "aux-4", BOXY_EVENT_CHANNEL}
 
-
 events = []
 events_present = 0
-event_begun = False # paolo: to separate events -- each event happens at ONE specific time, not several contiguous
-for (t,x) in enumerate(bf_data[BOXY_EVENT_CHANNEL]):
+event_begun = False  # paolo: to separate events -- each event happens at ONE specific time, not several contiguous
+for (t, x) in enumerate(bf_data[BOXY_EVENT_CHANNEL]):
     if x != 0.0 and not event_begun:
-        events.append((t,x))
+        events.append((t, x))
         event_begun = not event_begun
 
     if x == 0.0 and event_begun:
@@ -98,14 +105,10 @@ print "Events:", events
 if len(events) != 0:
     events_present = 1
 
-
-
-
-
 for f in bf_data.keys():
     if max(bf_data[f]) - min(bf_data[f]) == 0:
         print f, "almost constant"
-        #skipped_columns.add(f)
+        # skipped_columns.add(f)
     else:
         print "Channel %s\t%f\t%f" % (f, min(bf_data[f]), max(bf_data[f]))
 
@@ -137,7 +140,6 @@ for s in selected_fields:
     physical_minimum[s] = min(selected_signals[s])
     physical_maximum[s] = max(selected_signals[s])
 
-
     mean = sum(selected_signals[s])/len(selected_signals[s])
 
     print "Average =", mean, "--- centering the values."
@@ -148,7 +150,7 @@ for s in selected_fields:
         i += 1
     print "After centering: \t%f\t%f" % (min(selected_signals[s]), max(selected_signals[s]))
 
-    abs_max = max(abs(min(selected_signals[s])),abs(max(selected_signals[s])))
+    abs_max = max(abs(min(selected_signals[s])), abs(max(selected_signals[s])))
     print "Abs max =", abs_max, "-- now scaling"
 
     scaling_factor = 32000.0/abs_max  # the scaling factor to be in the range -32k to 32k
@@ -158,10 +160,7 @@ for s in selected_fields:
         i += 1
     print "After scaling: \t%d\t%d" % (min(selected_signals[s]), max(selected_signals[s]))
 
-
-
-
-
+# ###
 
 print "".center(100, "=")
 print "Data to write in the EDF file".center(100, "-")
@@ -288,7 +287,7 @@ header[18] = ""
 for field in selected_fields:
     header[18] += spacepad(str(len(selected_signals[field])), 8)
 if events_present:
-    header[18] += spacepad( len(events) * eeg_event_length , 8)
+    header[18] += spacepad(len(events) * eeg_event_length, 8)
 
 
 # ns * 32 ascii : ns * reserved
