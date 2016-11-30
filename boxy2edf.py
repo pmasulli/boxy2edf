@@ -1,9 +1,34 @@
 #!/usr/bin/pyhon
+#
+# boxy2edf v0.2
+# Copyright 2016 Paolo Masulli - Neuroheuristic Research Group
+#
+#
+# This file is part of boxy2edf.
+#
+# boxy2edf is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# Foobar is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with boxy2edf.  If not, see <http://www.gnu.org/licenses/>.
+
+
 import struct
 import os.path
 import sys
 import datetime
 import logging
+
+# logging configuration
+# logging.basicConfig(filename='example.log', filemode='w', level=logging.DEBUG)
+logging.basicConfig(level=logging.INFO)
 
 interactive_mode = False
 
@@ -71,12 +96,12 @@ for line in bf:
             bf_fields = line.rstrip().split("\t")
             for (field_id, field) in enumerate(bf_fields):
                 bf_data[field] = []
-            print "There are", len(bf_fields), "fields"
+            logging.info("There are %d fields" % len(bf_fields))
 
         if data_ends_line == 0 and i > data_begins_line + 2:
             # if we are in a data line
             data_line = line.rstrip().split("\t")
-            # print "There are", len(bf_data[-1]), "data columns"
+            # logging.info("There are %d data columns" % len(bf_data[-1]))
             if len(data_line) != len(bf_fields):
                 raise ValueError("We have a problem! There are", len(bf_fields),
                                  "fields, but this line in the boxy file has", len(data_line), "points.")
@@ -111,10 +136,10 @@ if len(events) != 0:
 
 for f in bf_data.keys():
     if max(bf_data[f]) - min(bf_data[f]) == 0:
-        print f, "almost constant"
+        logging.warning("%s almost constant" % f)
         # skipped_columns.add(f)
     else:
-        print "Channel %s\t%f\t%f" % (f, min(bf_data[f]), max(bf_data[f]))
+        logging.info("Channel %s\t%f\t%f" % (f, min(bf_data[f]), max(bf_data[f])))
 
 
 skipped_columns = list(skipped_columns)
@@ -138,7 +163,7 @@ for s in selected_fields:
     # for each signal
 
     # centering around 0
-    print "Channel", s
+    logging.info("Channel %s" % s)
 
     # save physical min and max
     physical_minimum[s] = min(selected_signals[s])
@@ -146,23 +171,23 @@ for s in selected_fields:
 
     mean = sum(selected_signals[s])/len(selected_signals[s])
 
-    print "Average =", mean, "--- centering the values."
+    logging.info("Average = %f --- centering the values." % mean)
 
     i = 0
     while i < len(selected_signals[s]):
         selected_signals[s][i] -= mean
         i += 1
-    print "After centering:\t%f\t%f" % (min(selected_signals[s]), max(selected_signals[s]))
+    logging.info("After centering:\t%f\t%f" % (min(selected_signals[s]), max(selected_signals[s])))
 
     abs_max = max(abs(min(selected_signals[s])), abs(max(selected_signals[s])))
-    print "Abs max =", abs_max, "-- now scaling"
+    logging.info("Abs max = %f -- now scaling" % abs_max)
 
     scaling_factor = 32000.0/abs_max  # the scaling factor to be in the range -32k to 32k
     i = 0
     while i < len(selected_signals[s]):
         selected_signals[s][i] = int(scaling_factor * selected_signals[s][i])
         i += 1
-    print "After scaling:\t\t%d\t%d" % (min(selected_signals[s]), max(selected_signals[s]))
+    logging.info("After scaling:\t\t%d\t%d" % (min(selected_signals[s]), max(selected_signals[s])))
 
 # ###
 
@@ -171,10 +196,9 @@ print "Data to write in the EDF file".center(100, "-")
 print "Fields:", selected_fields
 print "Writing", len(selected_fields), "fields."
 print "Number of data points:", len(selected_signals[selected_fields[0]])
-print len(selected_signals[selected_fields[0]]) / b_update_rate
 print "Approximate data recording duration: %s" % \
       str(datetime.timedelta(seconds=len(selected_signals[selected_fields[0]]) / b_update_rate))
-print ""
+print "".center(100, "=")
 
 if interactive_mode:
     raw_input("Press Enter to continue...")
@@ -311,8 +335,8 @@ header_string = ""
 for i in header.keys():
     header_string += header[i]
 
-print header_string
-print "--- Header length = ", len(header_string)
+logging.debug(header_string)
+logging.info("Header length = %d" % len(header_string))
 
 
 print "Writing in the file", edf_file
@@ -327,12 +351,13 @@ for s in selected_fields:
         try:
             datastring += struct.pack("<h", v)
         except struct.error:
-            print "Ooops tried to pack a number that was too big!", v
+            logging.warning("Ooops tried to pack a number that was too big: %f" % v)
     ef.write(datastring)
-    print "Wrote signal", s
+    logging.info("Wrote signal %s" % s)
 
 if events_present:
     # write the event channel
+    logging.info("Writing the event channel...")
     eventstring = ''
     eventstring += spacepad('+0\x14\x14Recording starts\x14\x00', 2 * eeg_event_length, '\x00')
 
@@ -344,3 +369,4 @@ if events_present:
 
 bf.close()
 ef.close()
+logging.info("Done writing the file %s. Success." % edf_file)
