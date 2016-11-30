@@ -2,9 +2,14 @@
 import struct
 import os.path
 import sys
+import datetime
+import logging
+
+interactive_mode = False
 
 if len(sys.argv) < 2:
     print "Interactive mode"
+    interactive_mode = True
     boxy_file = raw_input("Path to the boxy file: ")
 else:
     boxy_file = sys.argv[1]
@@ -73,9 +78,8 @@ for line in bf:
             data_line = line.rstrip().split("\t")
             # print "There are", len(bf_data[-1]), "data columns"
             if len(data_line) != len(bf_fields):
-                print "We have a problem! There are", len(bf_fields), \
-                    "fields, but this line in the boxy file has", len(data_line), "points."
-                exit(-1)
+                raise ValueError("We have a problem! There are", len(bf_fields),
+                                 "fields, but this line in the boxy file has", len(data_line), "points.")
             for (field_id, v) in enumerate(data_line):
                 bf_data[bf_fields[field_id]].append(round(float(v), 2))
     i += 1
@@ -100,7 +104,7 @@ for (t, x) in enumerate(bf_data[BOXY_EVENT_CHANNEL]):
     if x == 0.0 and event_begun:
         event_begun = not event_begun
 
-print "Events:", events
+print "Events (time, code):", events
 
 if len(events) != 0:
     events_present = 1
@@ -148,7 +152,7 @@ for s in selected_fields:
     while i < len(selected_signals[s]):
         selected_signals[s][i] -= mean
         i += 1
-    print "After centering: \t%f\t%f" % (min(selected_signals[s]), max(selected_signals[s]))
+    print "After centering:\t%f\t%f" % (min(selected_signals[s]), max(selected_signals[s]))
 
     abs_max = max(abs(min(selected_signals[s])), abs(max(selected_signals[s])))
     print "Abs max =", abs_max, "-- now scaling"
@@ -158,7 +162,7 @@ for s in selected_fields:
     while i < len(selected_signals[s]):
         selected_signals[s][i] = int(scaling_factor * selected_signals[s][i])
         i += 1
-    print "After scaling: \t%d\t%d" % (min(selected_signals[s]), max(selected_signals[s]))
+    print "After scaling:\t\t%d\t%d" % (min(selected_signals[s]), max(selected_signals[s]))
 
 # ###
 
@@ -167,19 +171,24 @@ print "Data to write in the EDF file".center(100, "-")
 print "Fields:", selected_fields
 print "Writing", len(selected_fields), "fields."
 print "Number of data points:", len(selected_signals[selected_fields[0]])
+print len(selected_signals[selected_fields[0]]) / b_update_rate
+print "Approximate data recording duration: %s" % \
+      str(datetime.timedelta(seconds=len(selected_signals[selected_fields[0]]) / b_update_rate))
 print ""
 
+if interactive_mode:
+    raw_input("Press Enter to continue...")
 
 date = "01-JAN-2015"
 patient_code = "P001"  # local code
 patient_sex = "M"  # M/F/X
 patient_birthdate = "01-MAR-1951"  # DD-MMM-YYYY
-patient_name = "John_Doe"  # replace spaces w underscores
+patient_name = "fNIRS_Patient"  # replace spaces w underscores
 
 recording_startdate_short = "01.01.15"  # DD.MM.YY
 recording_startdate_long = "01-JAN-2015"  # DD-MMM-YYYY
 recording_starttime = "10.00.00"  # HH.MM.SS
-investigation_code = "NIRS_PILOT_001"
+investigation_code = "NIRS_001"
 responsible_investigator_code = "AV"
 equipment_code = "NHRG_IMAGENT"
 
@@ -303,7 +312,7 @@ for i in header.keys():
     header_string += header[i]
 
 print header_string
-print "--- Len = ", len(header_string)
+print "--- Header length = ", len(header_string)
 
 
 print "Writing in the file", edf_file
