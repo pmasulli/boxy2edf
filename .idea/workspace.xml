@@ -2,46 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="be6bbda9-9299-4a39-8a91-c8c29905f44d" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/example_data/boxy_data_example.edf" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/2mins_rest_first_attempt.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AV_open_eyes-closed_eyes.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/02_strobo.edf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/02_strobo.set" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/2mins_rest_first_attempt.edf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/AV_open_eyes-closed_eyes.edf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/elena_oddball_9sequences.edf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/nihonkohden_1.mtg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/oddball_9sequences.edf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/open_eyes-closed_eyes.set" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/edfpluswriter.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/eegtools-master/.gitignore" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/eegtools-master/LICENSE.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/eegtools-master/README.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/eegtools-master/eegtools/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/eegtools-master/eegtools/data/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/eegtools-master/eegtools/data/bcicomp3_4a.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/eegtools-master/eegtools/data/reuderink_affpac.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/eegtools-master/eegtools/data/schalk_physiobank.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/eegtools-master/eegtools/data/schalk_physiobank_test.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/eegtools-master/eegtools/data/shared.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/eegtools-master/eegtools/data/shared_test.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/eegtools-master/eegtools/featex.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/eegtools-master/eegtools/featex_test.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/eegtools-master/eegtools/io/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/eegtools-master/eegtools/io/data/kemp-positive_spikes.edf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/eegtools-master/eegtools/io/data/sine3Hz_block0.2Hz.edf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/eegtools-master/eegtools/io/edfplus.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/eegtools-master/eegtools/io/edfplus_test.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/eegtools-master/eegtools/spatfilt.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/eegtools-master/eegtools/spatfilt_test.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/eegtools-master/examples/ex_csp_motor_imagery.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/eegtools-master/requirements.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/eegtools-master/setup.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/oddball_9sequences.txt" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/02_strobo.txt" afterPath="$PROJECT_DIR$/example_data/boxy_data_example.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/extract_edf_segments.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/boxy2edf.py" afterPath="$PROJECT_DIR$/boxy2edf.py" />
     </list>
     <ignored path="boxi2edf.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -61,11 +23,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="boxy2edf.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="boxy2edf.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/boxy2edf.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+            <state relative-caret-position="166">
+              <caret line="199" column="41" selection-start-line="199" selection-start-column="6" selection-end-line="199" selection-end-column="41" />
+              <folding>
+                <element signature="e#759#772#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="extract_edf_segments.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/extract_edf_segments.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="257">
+              <caret line="116" column="48" selection-start-line="116" selection-start-column="48" selection-end-line="116" selection-end-column="48" />
               <folding>
                 <element signature="e#759#772#0" expanded="true" />
               </folding>
@@ -94,13 +68,14 @@
         <option value="$PROJECT_DIR$/../boxi2edf/eegtools-master/eegtools/io/edfplus.py" />
         <option value="$PROJECT_DIR$/../boxi2edf/boxy2edf.py" />
         <option value="$PROJECT_DIR$/boxy2edf.py" />
+        <option value="$PROJECT_DIR$/extract_edf_segments.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="4" />
     <option name="y" value="22" />
-    <option name="width" value="1450" />
+    <option name="width" value="1436" />
     <option name="height" value="878" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -364,17 +339,17 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="4" y="22" width="1450" height="878" extended-state="0" />
-    <editor active="true" />
+    <frame x="4" y="22" width="1436" height="878" extended-state="6" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19454163" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1943463" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32912844" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33552632" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3144737" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32894737" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32894737" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -408,30 +383,8 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/eegtools-master/eegtools/featex.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/eegtools-master/examples/ex_csp_motor_imagery.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/eegtools-master/eegtools/io/edfplus_test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="25" column="11" selection-start-line="25" selection-start-column="11" selection-end-line="25" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/eegtools-master/examples/ex_csp_motor_imagery.py" />
+    <entry file="file://$PROJECT_DIR$/eegtools-master/eegtools/io/edfplus_test.py" />
     <entry file="file://$PROJECT_DIR$/boxy2edf.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -442,102 +395,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/eegtools-master/eegtools/io/edfplus.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/eegtools-master/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/eegtools-master/eegtools/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/eegtools-master/eegtools/featex.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/eegtools-master/examples/ex_csp_motor_imagery.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/eegtools-master/eegtools/io/edfplus_test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="25" column="11" selection-start-line="25" selection-start-column="11" selection-end-line="25" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/eegtools-master/eegtools/io/edfplus.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/eegtools-master/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/eegtools-master/eegtools/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/eegtools-master/eegtools/featex.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/eegtools-master/examples/ex_csp_motor_imagery.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/eegtools-master/eegtools/io/edfplus_test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="25" column="11" selection-start-line="25" selection-start-column="11" selection-end-line="25" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/eegtools-master/eegtools/io/edfplus.py" />
+    <entry file="file://$PROJECT_DIR$/eegtools-master/README.md" />
+    <entry file="file://$PROJECT_DIR$/eegtools-master/eegtools/__init__.py" />
+    <entry file="file://$PROJECT_DIR$/eegtools-master/eegtools/featex.py" />
+    <entry file="file://$PROJECT_DIR$/eegtools-master/examples/ex_csp_motor_imagery.py" />
+    <entry file="file://$PROJECT_DIR$/eegtools-master/eegtools/io/edfplus_test.py" />
+    <entry file="file://$PROJECT_DIR$/eegtools-master/eegtools/io/edfplus.py" />
+    <entry file="file://$PROJECT_DIR$/eegtools-master/README.md" />
+    <entry file="file://$PROJECT_DIR$/eegtools-master/eegtools/__init__.py" />
+    <entry file="file://$PROJECT_DIR$/eegtools-master/eegtools/featex.py" />
+    <entry file="file://$PROJECT_DIR$/eegtools-master/examples/ex_csp_motor_imagery.py" />
+    <entry file="file://$PROJECT_DIR$/eegtools-master/eegtools/io/edfplus_test.py" />
     <entry file="file://$PROJECT_DIR$/boxy2edf.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -548,54 +417,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/eegtools-master/eegtools/io/edfplus.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/eegtools-master/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/eegtools-master/eegtools/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/eegtools-master/eegtools/featex.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/eegtools-master/examples/ex_csp_motor_imagery.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/eegtools-master/eegtools/io/edfplus_test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="25" column="11" selection-start-line="25" selection-start-column="11" selection-end-line="25" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/eegtools-master/eegtools/io/edfplus.py" />
+    <entry file="file://$PROJECT_DIR$/eegtools-master/README.md" />
+    <entry file="file://$PROJECT_DIR$/eegtools-master/eegtools/__init__.py" />
+    <entry file="file://$PROJECT_DIR$/eegtools-master/eegtools/featex.py" />
+    <entry file="file://$PROJECT_DIR$/eegtools-master/examples/ex_csp_motor_imagery.py" />
+    <entry file="file://$PROJECT_DIR$/eegtools-master/eegtools/io/edfplus_test.py" />
     <entry file="file://$PROJECT_DIR$/boxy2edf.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -606,22 +433,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/eegtools-master/eegtools/io/edfplus.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="210" column="35" selection-start-line="210" selection-start-column="27" selection-end-line="210" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/eegtools-master/eegtools/io/edfplus_test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="25" column="11" selection-start-line="25" selection-start-column="11" selection-end-line="25" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/eegtools-master/eegtools/io/edfplus.py" />
+    <entry file="file://$PROJECT_DIR$/eegtools-master/eegtools/io/edfplus_test.py" />
     <entry file="file://$PROJECT_DIR$/boxy2edf.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -632,22 +445,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/eegtools-master/eegtools/io/edfplus.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="31" column="8" selection-start-line="31" selection-start-column="8" selection-end-line="31" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/eegtools-master/eegtools/io/edfplus_test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="25" column="11" selection-start-line="25" selection-start-column="11" selection-end-line="25" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/eegtools-master/eegtools/io/edfplus.py" />
+    <entry file="file://$PROJECT_DIR$/eegtools-master/eegtools/io/edfplus_test.py" />
     <entry file="file://$PROJECT_DIR$/boxy2edf.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -658,22 +457,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/eegtools-master/eegtools/io/edfplus.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="207" column="31" selection-start-line="207" selection-start-column="31" selection-end-line="207" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/eegtools-master/eegtools/io/edfplus_test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="25" column="11" selection-start-line="25" selection-start-column="11" selection-end-line="25" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/eegtools-master/eegtools/io/edfplus.py" />
+    <entry file="file://$PROJECT_DIR$/eegtools-master/eegtools/io/edfplus_test.py" />
     <entry file="file://$PROJECT_DIR$/boxy2edf.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -684,22 +469,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/eegtools-master/eegtools/io/edfplus.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="207" column="31" selection-start-line="207" selection-start-column="31" selection-end-line="207" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/eegtools-master/eegtools/io/edfplus_test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="25" column="11" selection-start-line="25" selection-start-column="11" selection-end-line="25" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/eegtools-master/eegtools/io/edfplus.py" />
+    <entry file="file://$PROJECT_DIR$/eegtools-master/eegtools/io/edfplus_test.py" />
     <entry file="file://$PROJECT_DIR$/boxy2edf.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -710,22 +481,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/eegtools-master/eegtools/io/edfplus.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="207" column="31" selection-start-line="207" selection-start-column="31" selection-end-line="207" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/eegtools-master/eegtools/io/edfplus_test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="25" column="11" selection-start-line="25" selection-start-column="11" selection-end-line="25" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/eegtools-master/eegtools/io/edfplus.py" />
+    <entry file="file://$PROJECT_DIR$/eegtools-master/eegtools/io/edfplus_test.py" />
     <entry file="file://$PROJECT_DIR$/boxy2edf.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -736,22 +493,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/eegtools-master/eegtools/io/edfplus.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/eegtools-master/eegtools/io/edfplus_test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="25" column="11" selection-start-line="25" selection-start-column="11" selection-end-line="25" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/eegtools-master/eegtools/io/edfplus.py" />
+    <entry file="file://$PROJECT_DIR$/eegtools-master/eegtools/io/edfplus_test.py" />
     <entry file="file://$USER_HOME$/Library/Caches/PyCharm40/python_stubs/-1856293957/__builtin__.py" />
     <entry file="file:///Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/collections.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -760,65 +503,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/edfpluswriter.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="24" column="8" selection-start-line="24" selection-start-column="8" selection-end-line="24" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/eegtools-master/eegtools/io/edfplus_test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="25" column="11" selection-start-line="25" selection-start-column="11" selection-end-line="25" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/eegtools-master/eegtools/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/eegtools-master/eegtools/featex.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/eegtools-master/examples/ex_csp_motor_imagery.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/eegtools-master/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/eegtools-master/eegtools/io/edfplus.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="33" selection-start-line="16" selection-start-column="33" selection-end-line="16" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/edfpluswriter.py" />
+    <entry file="file://$PROJECT_DIR$/eegtools-master/eegtools/io/edfplus_test.py" />
+    <entry file="file://$PROJECT_DIR$/eegtools-master/eegtools/__init__.py" />
+    <entry file="file://$PROJECT_DIR$/eegtools-master/eegtools/featex.py" />
+    <entry file="file://$PROJECT_DIR$/eegtools-master/examples/ex_csp_motor_imagery.py" />
+    <entry file="file://$PROJECT_DIR$/eegtools-master/README.md" />
+    <entry file="file://$PROJECT_DIR$/eegtools-master/eegtools/io/edfplus.py" />
     <entry file="file://$PROJECT_DIR$/boxy2edf.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+        <state relative-caret-position="166">
+          <caret line="199" column="41" selection-start-line="199" selection-start-column="6" selection-end-line="199" selection-end-column="41" />
+          <folding>
+            <element signature="e#759#772#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/extract_edf_segments.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="257">
+          <caret line="116" column="48" selection-start-line="116" selection-start-column="48" selection-end-line="116" selection-end-column="48" />
           <folding>
             <element signature="e#759#772#0" expanded="true" />
           </folding>
