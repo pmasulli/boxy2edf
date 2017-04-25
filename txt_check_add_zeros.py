@@ -44,190 +44,84 @@ def spacepad(string, n, paddingchar=" "):
 
 # root_path = "/Volumes/Data1/data/nirs/2016_eeg_nirs"
 
-scoring_interval = 30.0
-
-sleep_phases_numeric_codes = {
-    "SLEEP-S0": 6,
-    "SLEEP-REM": 5,
-    "SLEEP-S1": 4,
-    "SLEEP-S2": 3,
-    "SLEEP-S3": 2,
-}
-
+add_zeros = False
+sampling_rate = 512
 
 if len(sys.argv) < 2:
     print "Interactive mode"
     interactive_mode = True
-    root_path = raw_input("Path to the data directory: ")
+    file_orig = raw_input("Path to the file: ")
 else:
-    root_path = sys.argv[1]
+    file_orig = sys.argv[1]
 
 
-channels_to_extract_str = ""
-try:
-    with open(os.path.join(root_path, 'channels.txt')) as fh:
-        channels_to_extract_str = fh.readline().rstrip("\r\n")
-except IOError:
-    print "Cannot find the channels.txt file."
-    exit(-1)
-channels_to_extract = channels_to_extract_str.split(",")
+orig_fh = open(file_orig, 'r')
 
+header_line = orig_fh.readline()
 
-for basepath in sorted(glob.glob(os.path.join(root_path, "63432*"))):
+period = 1000.0 / sampling_rate
 
-    boxy_file = os.path.join(basepath, "NIRS/data.txt")
-    if not os.path.isfile(boxy_file):
-        raise ValueError("Boxy file not found: %s" % boxy_file)
+if add_zeros:
+    add_zeros = 'y' == raw_input("add zeros? ")
+    lines_to_add = input("Lines to add? ")
+    dest_fh = open(file_orig.replace(".txt", "_with_zeros.txt"), 'w')
+    dest_fh.write(header_line)
 
-    output_filename = boxy_file.replace(".txt", "") + "_with_hypnogram.txt"
+    line_of_zeros = orig_fh.readline()
+    dest_fh.write(line_of_zeros)
 
-    print (" Processing %s " % boxy_file).center(100, "-")
+    line_of_zeros = "\t".join(line_of_zeros.split("\t")[1:])
 
-    # open the two files
-    bf = open(boxy_file, 'r')
-    output_fh = open(output_filename, 'wb')
+    i = 1
 
-    scoring_filename = os.path.join(basepath, "EEG/sleep_scoring.txt")
+    print "Adding zeros..."
+    for j in range(lines_to_add):
+        time = period * i
 
-    time_delta = None
-    try:
-        with open(os.path.join(basepath, "time_delta.txt"), 'r') as time_delta_fh:
-            time_delta = float(time_delta_fh.readline().rstrip("\r\n"))
-        print "The time delta is %.2f" % time_delta
-    except:
-        print "Time delta file not found"
-        try:
-            time_delta = float(raw_input("Enter the time delta t_EEG - t_NIRS: "))
-        except ValueError:
-            print "Could not interpret the time delta value."
-            exit(-1)
-
-
-
-
-    # read the Boxy file
-
-    data_begins_line = data_ends_line = 0
-    b_update_rate = 0.0
-    bf_fields = []
-    bf_data = {}  # each element is a signal/channel, a list of data points
-
-    i = 0
-    for line in bf:
-        if '#DATA BEGINS' in line:
-            data_begins_line = i
-        if '#DATA ENDS' in line:
-            data_ends_line = i
-
-        if "Update Rate (Hz)" in line:
-            b_update_rate = float(line.split(" ")[0])
-
-        if data_begins_line != 0:
-            # if data has begun
-
-            if i == data_begins_line + 1:
-                # the field names line
-                bf_fields = line.rstrip().split("\t")
-                for (field_id, field) in enumerate(bf_fields):
-                    bf_data[field] = []
-                logging.info("There are %d fields" % len(bf_fields))
-
-            if data_ends_line == 0 and i > data_begins_line + 2:
-                # if we are in a data line
-                data_line = line.rstrip().split("\t")
-                # logging.info("There are %d data columns" % len(bf_data[-1]))
-                if len(data_line) != len(bf_fields):
-                    raise ValueError(("We have a problem! There are %d fields, but line %d " +
-                                     "in the boxy file has %d points.") % (len(bf_fields), i, len(data_line)))
-                for (field_id, v) in enumerate(data_line):
-                    bf_data[bf_fields[field_id]].append(np.round(float(v), 3))
-                    # bf_data[bf_fields[field_id]].append(float(v))
+        line_to_write = "%.4f\t%s" % (time, line_of_zeros)
+        dest_fh.write(line_to_write)
         i += 1
+    print "Wrote", i, "lines of zeros."
 
-    print "Data read in the Boxy file".center(100, "-")
-    print "Data begins at line", data_begins_line, "and ends at", data_ends_line
-    print "There are", len(bf_data), "columns."
-    print "Fields:", bf_fields
-    print "Update rate:", b_update_rate
-
-    # columns to skip
-    skipped_columns = ["time", "group", "step", "mark", "flag", "aux-1", "aux-2", "aux-3", "aux-4"]
-
-
-
-    # change here to select some signals only
-    selected_fields = [field for field in channels_to_extract if field not in skipped_columns]
-    selected_signals = {field: bf_data[field][:] for field in selected_fields}
+    for line in orig_fh:
+        time = period * i
+        line_orig = "\t".join(line.split("\t")[1:])
+        line_to_write = "%.4f\t%s" % (time, line_orig)
+        dest_fh.write(line_to_write)
+        i += 1
+        if i % 50000 == 0:
+            print i, ". . ."
 
 
-    n_signals = len(selected_fields)
-    data_time_duration = round(len(selected_signals[selected_fields[0]]) / b_update_rate)  # freq * n_points
+    orig_fh.close()
+    dest_fh.close()
+    print "Done adding zeros."
 
+if add_zeros:
+    file_to_check = file_orig.replace(".txt", "_with_zeros.txt")
+else:
+    file_to_check = file_orig
 
+fh = open(file_to_check, 'r')
 
-    scoring_phases = []
-    scoring_onsets = []
-    found_phases = set()
-    onset_times_by_phase = {}
-    sleep_phase_signal = np.full(len(selected_signals[selected_fields[0]]), -100, dtype=np.int)
+header_line = fh.readline()
 
-    with open(scoring_filename, 'r') as fh:
-        i = 0
-        old_end = None
-        end_index = None
-        for line in fh:
-            phase = line.rstrip("\r\n")
+trigger_index = header_line.split("\t").index("25")
 
-            # (seconds) beginning time of the sleep phase - corrected for NIRS
-            onset_time = scoring_interval * i - time_delta
-            end_time = onset_time + scoring_interval
-            onset_index = int(round(onset_time * b_update_rate))
+print "The trigger index is", trigger_index
+last_time = 0
+line_count = 0
+for line in fh:
+    data = line.split("\t")
+    time = float(data[0])
+    trigger_voltage = float(data[trigger_index])
+    if trigger_voltage > 0.5:
+        print "Trigger at time\t%f\t%f" % (time, trigger_voltage)
 
-            if end_index is not None:
-                old_end = end_index
+    last_time = time
+    line_count += 1
 
-            end_index = onset_index + int(round(scoring_interval * b_update_rate))
-
-            i += 1
-
-            print "Phase %s from %.1f to %.1f (NIRS time, seconds) [%d %d]" % (phase, onset_time, end_time, onset_index, end_index)
-
-
-            if old_end is not None and onset_index - old_end > 1:
-                print "Warning! The previous phase ended at %d, the current starts at %d" % (old_end, onset_index)
-
-
-            if onset_time < 0 and end_time > 0:
-                print "This phase is partly contained in the NIRS recording (beginning)"
-                onset_index = 0
-            elif onset_index < len(selected_signals[selected_fields[0]]) and \
-                            end_index > len(selected_signals[selected_fields[0]]):
-                print "This phase is partly contained in the NIRS recording (end)"
-                end_index = len(selected_signals[selected_fields[0]]) - 1
-            elif end_time < 0 or onset_index >= len(selected_signals[selected_fields[0]]):
-                print "This phase is completely out of the NIRS recording, skipping it"
-                continue
-
-
-            for index in range(onset_index, end_index):
-                sleep_phase_signal[index] = sleep_phases_numeric_codes[phase]
-
-
-
-    print "Writing the %d signals %s." % (n_signals, ",".join(selected_fields))
-
-    output_fh.write(",".join(['hypnogram'] + selected_fields) + "\n")
-
-    for line in range(len(selected_signals[selected_fields[0]])):
-        datastring = '%d,' % sleep_phase_signal[line]
-        for field in selected_fields:
-            datastring += "%.3f," % selected_signals[field][line]
-        output_fh.write(datastring[:-1] + "\n")
-
-    print "Written %d lines" % line
-
-    bf.close()
-    output_fh.close()
-    logging.info("Done writing the file %s. Success." % output_filename)
-    print "".center(100, "-")
+print "Num. lines = ", line_count
+print "Last time in the file = ", last_time
+print "Calculated time = ", (1000 * float(line_count) / sampling_rate)
 

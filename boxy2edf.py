@@ -25,6 +25,7 @@ import os.path
 import sys
 import datetime
 import logging
+import numpy as np
 
 # logging configuration
 # logging.basicConfig(filename='example.log', filemode='w', level=logging.DEBUG)
@@ -103,10 +104,11 @@ for line in bf:
             data_line = line.rstrip().split("\t")
             # logging.info("There are %d data columns" % len(bf_data[-1]))
             if len(data_line) != len(bf_fields):
-                raise ValueError("We have a problem! There are", len(bf_fields),
-                                 "fields, but this line in the boxy file has", len(data_line), "points.")
+                raise ValueError(("We have a problem! There are %d fields, but line %d " +
+                                 "in the boxy file has %d points.") % (len(bf_fields), i, len(data_line)))
             for (field_id, v) in enumerate(data_line):
-                bf_data[bf_fields[field_id]].append(round(float(v), 2))
+                bf_data[bf_fields[field_id]].append(np.round(float(v), 3))
+                # bf_data[bf_fields[field_id]].append(float(v))
     i += 1
 
 print "Data read in the Boxy file".center(100, "-")
@@ -156,7 +158,6 @@ data_time_duration = round(len(selected_signals[selected_fields[0]]) / b_update_
 physical_minimum = {}
 physical_maximum = {}
 
-
 print "Scaling and centering".center(100, "-")
 
 for s in selected_fields:
@@ -169,7 +170,7 @@ for s in selected_fields:
     physical_minimum[s] = min(selected_signals[s])
     physical_maximum[s] = max(selected_signals[s])
 
-    mean = sum(selected_signals[s])/len(selected_signals[s])
+    mean = sum(selected_signals[s]) / len(selected_signals[s])
 
     logging.info("Average = %f --- centering the values." % mean)
 
@@ -182,10 +183,12 @@ for s in selected_fields:
     abs_max = max(abs(min(selected_signals[s])), abs(max(selected_signals[s])))
     logging.info("Abs max = %f -- now scaling" % abs_max)
 
-    scaling_factor = 32000.0/abs_max  # the scaling factor to be in the range -32k to 32k
+    scaling_factor = 32767.0/abs_max  # the scaling factor to be in the range -32k to 32k
+
+    logging.info("The scaling factor is: %f" % scaling_factor)
     i = 0
     while i < len(selected_signals[s]):
-        selected_signals[s][i] = int(scaling_factor * selected_signals[s][i])
+        selected_signals[s][i] = int(round(scaling_factor * selected_signals[s][i]))
         i += 1
     logging.info("After scaling:\t\t%d\t%d" % (min(selected_signals[s]), max(selected_signals[s])))
 
@@ -205,7 +208,7 @@ if interactive_mode:
 
 date = "01-JAN-2015"
 patient_code = "P001"  # local code
-patient_sex = "M"  # M/F/X
+patient_sex = "F"  # M/F/X
 patient_birthdate = "01-MAR-1951"  # DD-MMM-YYYY
 patient_name = "fNIRS_Patient"  # replace spaces w underscores
 
